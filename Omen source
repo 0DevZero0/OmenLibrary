@@ -118,7 +118,7 @@ function OmenLib.Create(Title)
 	UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 	UIListLayout.Padding = UDim.new(0, 10)
 
-	function OmenLib.Toggle()
+	function OmenLib.ActiveToggle()
 		OmenLibrary.Enabled = not OmenLibrary.Enabled
 	end
 
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.22")
+print("Omen library V0.0.3")
 
 return OmenLib
