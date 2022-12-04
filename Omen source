@@ -119,7 +119,7 @@ function OmenLib.Create(Title)
 	UIListLayout.Padding = UDim.new(0, 10)
 
 	function OmenLib.ActiveToggle()
-		OmenLibrary.Visible = not OmenLibrary.Visible
+		Main.Visible = not Main.Visible
 	end
 
 	function OmenLib.Notify(TitleText, BodyText, Time)
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.31")
+print("Omen library V0.0.32")
 
 return OmenLib
