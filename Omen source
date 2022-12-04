@@ -107,11 +107,9 @@ function OmenLib.Create(Title)
 		OmenLibrary.Enabled = not OmenLibrary.Enabled
 	end
 
-	function OmenLib:NewCategory(Name : string, Text : string, Info : string)
+	function OmenLib:NewCategory(Name, Text, Info)
 
 		-- Window
-		if Name == nil then return end
-
 		local Window = Instance.new("Frame")
 		Window.Name = Name
 		Window.Parent = Windows
@@ -208,7 +206,7 @@ function OmenLib.Create(Title)
 
 		function OmenLib.Button(ButtonName, ButtonText, Info, CallBack)
 			local Button = Instance.new("TextButton")
-			Button.Name = ButtonName
+			Button.Name = ButtonName or "Button"
 			Button.Parent = Buttons
 			Button.Text = ButtonText
 			Button.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
@@ -237,7 +235,7 @@ function OmenLib.Create(Title)
 
 		function OmenLib.Toggle(ToggleName, ToggleText, Info, CallBack)
 			local Toggle = Instance.new("Frame")
-			Toggle.Name = ToggleName
+			Toggle.Name = ToggleName or "Toggle"
 			Toggle.Parent = Buttons
 			Toggle.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
 			Toggle.Size = UDim2.new(1, -25, 0.143000007, 0)
@@ -299,7 +297,7 @@ function OmenLib.Create(Title)
 
 		function OmenLib.KeyBinder(KeyBinderName, Key, Info, CallBack)
 			local Keybinder = Instance.new("TextButton")
-			Keybinder.Name = KeyBinderName
+			Keybinder.Name = KeyBinderName or "KeyBinder"
 			Keybinder.Parent = Buttons
 			Keybinder.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
 			Keybinder.Size = UDim2.new(1, -25, 0.143000007, 0)
@@ -355,7 +353,7 @@ function OmenLib.Create(Title)
 
 		function OmenLib.Slider(SliderName, ValueName, Value, MaxValue, Info, Callback)
 			local Slider = Instance.new("Frame")
-			Slider.Name = SliderName
+			Slider.Name = SliderName or "Slider"
 			Slider.Parent = Buttons
 			Slider.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
 			Slider.Position = UDim2.new(0.0220701825, 0, 0.467746526, 0)
@@ -484,7 +482,7 @@ function OmenLib.Create(Title)
 
 		function OmenLib.TextInput(InputName, PlaceHolder, Info, CallBack)
 			local TextInput = Instance.new("Frame")
-			TextInput.Name = InputName
+			TextInput.Name = InputName or "Text input"
 			TextInput.Parent = Buttons
 			TextInput.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
 			TextInput.BackgroundTransparency = 1.000
