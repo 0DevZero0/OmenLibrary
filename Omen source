@@ -20,7 +20,7 @@ local LibAssets = {
 function OmenLib.Create(Title)
 	local OmenLibrary = Instance.new("ScreenGui")
 	OmenLibrary.Name = "OmenLibrary"
-	OmenLibrary.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	OmenLibrary.Parent = game.CoreGui
 	OmenLibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 	local Main = Instance.new("Frame")
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.32")
+print("Omen library V0.0.33")
 
 return OmenLib
