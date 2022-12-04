@@ -105,7 +105,7 @@ function OmenLib.Create(Title)
 
 	local NotificationList = Instance.new("Frame")
 	NotificationList.Name = "NotificationList"
-	NotificationList.Parent = game.StarterGui.OmenLibrary
+	NotificationList.Parent = OmenLibrary
 	NotificationList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	NotificationList.BackgroundTransparency = 1.000
 	NotificationList.Position = UDim2.new(0.780596137, 0, 0.25, 0)
@@ -125,7 +125,7 @@ function OmenLib.Create(Title)
 	function OmenLib.Notify(TitleText, BodyText, Time)
 		local Container = Instance.new("Frame")
 		Container.Name = "Container"
-		Container.Parent = game.StarterGui.OmenLibrary.NotificationList
+		Container.Parent = NotificationList
 		Container.AnchorPoint = Vector2.new(0.5, 0.5)
 		Container.BackgroundColor3 = Color3.fromRGB(40, 48, 48)
 		Container.BackgroundTransparency = 1.000
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.1")
+print("Omen library V0.0.2")
 
 return OmenLib
