@@ -156,19 +156,19 @@ function OmenLib.Create(Title)
 		Smoother_2.Parent = Notification
 
 		local Title = Instance.new("TextLabel")
-		Title.Name = TitleText or "Notification"
+		Title.Name = "Title"
 		Title.Parent = Notification
 		Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Title.BackgroundTransparency = 1.000
 		Title.Size = UDim2.new(1, 0, 0.192941204, 0)
 		Title.Font = Enum.Font.Highway
-		Title.Text = "Notification"
+		Title.Text = TitleText
 		Title.TextColor3 = Color3.fromRGB(82, 100, 100)
 		Title.TextSize = 20.000
 		Title.TextWrapped = true
 
 		local Body = Instance.new("TextLabel")
-		Body.Name = BodyText
+		Body.Name = "Body"
 		Body.Parent = Notification
 		Body.AnchorPoint = Vector2.new(0.5, 0.5)
 		Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -176,7 +176,7 @@ function OmenLib.Create(Title)
 		Body.Position = UDim2.new(0.5, 0, 0.557317078, 0)
 		Body.Size = UDim2.new(1, -10, 0.800000012, -10)
 		Body.Font = Enum.Font.Highway
-		Body.Text = "Body"
+		Body.Text = BodyText
 		Body.TextColor3 = Color3.fromRGB(131, 45, 45)
 		Body.TextSize = 25.000
 		Body.TextWrapped = true
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.21")
+print("Omen library V0.0.22")
 
 return OmenLib
