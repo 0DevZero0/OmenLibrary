@@ -103,8 +103,86 @@ function OmenLib.Create(Title)
 	ToolTip.TextWrapped = true
 	ToolTip.TextXAlignment = Enum.TextXAlignment.Left
 
+	local NotificationList = Instance.new("Frame")
+	NotificationList.Name = "NotificationList"
+	NotificationList.Parent = game.StarterGui.OmenLibrary
+	NotificationList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	NotificationList.BackgroundTransparency = 1.000
+	NotificationList.Position = UDim2.new(0.780596137, 0, 0.25, 0)
+	NotificationList.Size = UDim2.new(0.211160436, 0, 0.725294113, 0)
+
+	local UIListLayout = Instance.new("UIListLayout")
+	UIListLayout.Parent = NotificationList
+	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+	UIListLayout.Padding = UDim.new(0, 10)
+
 	function OmenLib.Toggle()
 		OmenLibrary.Enabled = not OmenLibrary.Enabled
+	end
+
+	function OmenLib.Notify(TitleText, BodyText, Time)
+		local Container = Instance.new("Frame")
+		Container.Name = "Container"
+		Container.Parent = game.StarterGui.OmenLibrary.NotificationList
+		Container.AnchorPoint = Vector2.new(0.5, 0.5)
+		Container.BackgroundColor3 = Color3.fromRGB(40, 48, 48)
+		Container.BackgroundTransparency = 1.000
+		Container.Position = UDim2.new(0.5, 0, 0.888930857, 0)
+		Container.Size = UDim2.new(0.831943572, 0, 0.222138241, 0)
+
+		local Notification = Instance.new("Frame")
+		Notification.Name = "Notification"
+		Notification.Parent = Container
+		Notification.BackgroundColor3 = Color3.fromRGB(40, 48, 48)
+		Notification.Position = UDim2.new(1.5, 0, 0, 0)
+		Notification.Size = UDim2.new(1, 0, 1, 0)
+
+		local Accent = Instance.new("Frame")
+		Accent.Name = "Accent"
+		Accent.Parent = Notification
+		Accent.BackgroundColor3 = Color3.fromRGB(28, 33, 33)
+		Accent.Size = UDim2.new(1, 0, 0.192941174, 0)
+
+		local Smoother = Instance.new("UICorner")
+		Smoother.CornerRadius = UDim.new(0.25, 0)
+		Smoother.Name = "Smoother"
+		Smoother.Parent = Accent
+
+		local Smoother_2 = Instance.new("UICorner")
+		Smoother_2.CornerRadius = UDim.new(0.0500000007, 0)
+		Smoother_2.Name = "Smoother"
+		Smoother_2.Parent = Notification
+
+		local Title = Instance.new("TextLabel")
+		Title.Name = TitleText or "Notification"
+		Title.Parent = Notification
+		Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Title.BackgroundTransparency = 1.000
+		Title.Size = UDim2.new(1, 0, 0.192941204, 0)
+		Title.Font = Enum.Font.Highway
+		Title.Text = "Notification"
+		Title.TextColor3 = Color3.fromRGB(82, 100, 100)
+		Title.TextSize = 20.000
+		Title.TextWrapped = true
+
+		local Body = Instance.new("TextLabel")
+		Body.Name = BodyText
+		Body.Parent = Notification
+		Body.AnchorPoint = Vector2.new(0.5, 0.5)
+		Body.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Body.BackgroundTransparency = 1.000
+		Body.Position = UDim2.new(0.5, 0, 0.557317078, 0)
+		Body.Size = UDim2.new(1, -10, 0.800000012, -10)
+		Body.Font = Enum.Font.Highway
+		Body.Text = "Body"
+		Body.TextColor3 = Color3.fromRGB(131, 45, 45)
+		Body.TextSize = 25.000
+		Body.TextWrapped = true
+
+		Tween(Notification, 0.5, {Position = UDim2.new(0, 0, 0, 0)})
+		game:GetService("Debris"):AddItem(Container, Time)
 	end
 
 	function OmenLib:NewCategory(Name, Text, Info)
