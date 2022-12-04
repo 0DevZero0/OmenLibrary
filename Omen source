@@ -183,6 +183,8 @@ function OmenLib.Create(Title)
 		table.insert(LibAssets.Tabs.TabWindows, Window)
 		table.insert(LibAssets.Tabs.TabButtons, CategoryButton)
 
+        LibAssets.Tabs.TabWindows[1].Visible = true; LibAssets.Tabs.TabButtons[1].BackgroundColor3 = Color3.fromRGB(80, 95, 95)
+
 		CategoryButton.MouseButton1Click:Connect(function()
 			for i, v in pairs(Windows:GetChildren()) do
 				v.Visible = false
@@ -538,8 +540,6 @@ function OmenLib.Create(Title)
 		ToolTip.Position = UDim2.new(0, mouse.X + 25, 0, mouse.Y)
 	end)
 end
-
---LibAssets.Tabs.TabWindows[1].Visible = true; LibAssets.Tabs.TabButtons[1].BackgroundColor3 = Color3.fromRGB(80, 95, 95)
 
 print("Omen library V0.0.1")
 
