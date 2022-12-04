@@ -1,0 +1,546 @@
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+local tweenService = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+
+local function Tween(instance, time, properties)
+	local info = TweenInfo.new(time)
+	return tweenService:Create(instance, info, properties)
+end
+
+local OmenLib = {}
+
+local LibAssets = {
+	Tabs = {
+		TabButtons = {},
+		TabWindows = {}
+	},
+}
+
+function OmenLib.Create(Title)
+	local OmenLibrary = Instance.new("ScreenGui")
+	OmenLibrary.Name = "OmenLibrary"
+	OmenLibrary.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	OmenLibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	local Main = Instance.new("Frame")
+	Main.Name = "Main"
+	Main.Parent = OmenLibrary
+	Main.AnchorPoint = Vector2.new(0.5, 0.5)
+	Main.BackgroundColor3 = Color3.fromRGB(40, 48, 48)
+	Main.BorderSizePixel = 0
+	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Main.Size = UDim2.new(0.5, 0, 0.5, 0)
+
+	local SideBar = Instance.new("Frame")
+	SideBar.Name = "SideBar"
+	SideBar.Parent = Main
+	SideBar.BackgroundColor3 = Color3.fromRGB(28, 33, 33)
+	SideBar.BorderSizePixel = 0
+	SideBar.Size = UDim2.new(0.25, 0, 1, 0)
+
+	local CategoryScrollFrame = Instance.new("ScrollingFrame")
+	CategoryScrollFrame.Name = "CategoryScrollFrame"
+	CategoryScrollFrame.Parent = SideBar
+	CategoryScrollFrame.Active = true
+	CategoryScrollFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+	CategoryScrollFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	CategoryScrollFrame.BackgroundTransparency = 1.000
+	CategoryScrollFrame.Position = UDim2.new(0.5, 0, 0.550000012, 0)
+	CategoryScrollFrame.Size = UDim2.new(1, 0, 0.899999976, -15)
+	CategoryScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+	CategoryScrollFrame.ScrollBarThickness = 1
+	CategoryScrollFrame.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Left
+
+	local Categories = Instance.new("Folder")
+	Categories.Name = "Categories"
+	Categories.Parent = CategoryScrollFrame
+
+	local CategoryLayout = Instance.new("UIListLayout")
+	CategoryLayout.Name = "CategoryLayout"
+	CategoryLayout.Parent = Categories
+	CategoryLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	CategoryLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	CategoryLayout.Padding = UDim.new(0, 5)
+
+	local SideBarSmoother = Instance.new("UICorner")
+	SideBarSmoother.CornerRadius = UDim.new(0.0500000007, 0)
+	SideBarSmoother.Name = "SideBarSmoother"
+	SideBarSmoother.Parent = SideBar
+
+	local UiTitle = Instance.new("TextLabel")
+	UiTitle.Name = "UiTitle"
+	UiTitle.Parent = SideBar
+	UiTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	UiTitle.BackgroundTransparency = 1.000
+	UiTitle.Size = UDim2.new(1.20421183, -40, 0.100000001, 0)
+	UiTitle.Font = Enum.Font.Highway
+	UiTitle.Text = Title or "Omen library"
+	UiTitle.TextColor3 = Color3.fromRGB(82, 100, 100)
+	UiTitle.TextSize = 25.000
+
+	local MainSmoother = Instance.new("UICorner")
+	MainSmoother.CornerRadius = UDim.new(0.0500000007, 0)
+	MainSmoother.Name = "MainSmoother"
+	MainSmoother.Parent = Main
+
+	local Windows = Instance.new("Folder")
+	Windows.Name = "Windows"
+	Windows.Parent = Main
+
+	local ToolTip = Instance.new("TextLabel")
+	ToolTip.Name = "ToolTip"
+	ToolTip.Parent = OmenLibrary
+	ToolTip.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ToolTip.BackgroundTransparency = 1.000
+	ToolTip.Size = UDim2.new(0.25, 0, 0.0226470586, 0)
+	ToolTip.Visible = false
+	ToolTip.Font = Enum.Font.Highway
+	ToolTip.Text = "This is a tooltip (So it can tell you stuff dummy)"
+	ToolTip.TextColor3 = Color3.fromRGB(255, 255, 255)
+	ToolTip.TextScaled = true
+	ToolTip.TextSize = 14.000
+	ToolTip.TextWrapped = true
+	ToolTip.TextXAlignment = Enum.TextXAlignment.Left
+
+	function OmenLib.Toggle()
+		OmenLibrary.Enabled = not OmenLibrary.Enabled
+	end
+
+	function OmenLib:NewCategory(Name : string, Text : string, Info : string)
+
+		-- Window
+		if Name == nil then return end
+
+		local Window = Instance.new("Frame")
+		Window.Name = Name
+		Window.Parent = Windows
+		Window.AnchorPoint = Vector2.new(0.5, 0.5)
+		Window.BackgroundColor3 = Color3.fromRGB(28, 33, 33)
+		Window.ClipsDescendants = true
+		Window.Visible = false
+		Window.Position = UDim2.new(0.625, 0, 0.5, 0)
+		Window.Size = UDim2.new(0.75, -25, 1, -25)
+
+		local WindowSmoother = Instance.new("UICorner")
+		WindowSmoother.CornerRadius = UDim.new(0.0250000004, 0)
+		WindowSmoother.Name = "WindowSmoother"
+		WindowSmoother.Parent = Window
+
+		local ButtonScroller = Instance.new("ScrollingFrame")
+		ButtonScroller.Name = "ButtonScroller"
+		ButtonScroller.Parent = Window
+		ButtonScroller.Active = true
+		ButtonScroller.AnchorPoint = Vector2.new(0.5, 0.5)
+		ButtonScroller.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ButtonScroller.BackgroundTransparency = 1.000
+		ButtonScroller.Position = UDim2.new(0.5, 0, 0.537500024, 0)
+		ButtonScroller.Size = UDim2.new(1, 0, 0.925000012, -15)
+		ButtonScroller.CanvasSize = UDim2.new(0, 0, 0, 0)
+		ButtonScroller.ScrollBarThickness = 1
+
+		local Buttons = Instance.new("Folder")
+		Buttons.Name = "Buttons"
+		Buttons.Parent = ButtonScroller
+
+		local ButtonLayout = Instance.new("UIListLayout")
+		ButtonLayout.Name = "ButtonLayout"
+		ButtonLayout.Parent = Buttons
+		ButtonLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		ButtonLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		ButtonLayout.Padding = UDim.new(0, 5)
+
+		local WindowTitle = Instance.new("TextLabel")
+		WindowTitle.Name = "WindowTitle"
+		WindowTitle.Parent = Window
+		WindowTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		WindowTitle.BackgroundTransparency = 1.000
+		WindowTitle.Position = UDim2.new(0.0220701825, 0, 0, 0)
+		WindowTitle.Size = UDim2.new(0.955859661, 0, 0.09375, 0)
+		WindowTitle.Font = Enum.Font.Highway
+		WindowTitle.Text = Text or "Unamed"
+		WindowTitle.TextColor3 = Color3.fromRGB(82, 100, 100)
+		WindowTitle.TextSize = 25.000
+		WindowTitle.TextXAlignment = Enum.TextXAlignment.Left
+
+		-- Button
+		local CategoryButton = Instance.new("TextButton")
+		CategoryButton.Name = Name
+		CategoryButton.Parent = Categories
+		CategoryButton.AutoButtonColor = false
+		CategoryButton.BackgroundColor3 = Color3.fromRGB(40, 48, 48)
+		CategoryButton.Size = UDim2.new(1, -10, 0.100000001, 0)
+		CategoryButton.Font = Enum.Font.Highway
+		CategoryButton.Text = Text
+		CategoryButton.TextColor3 = Color3.fromRGB(131, 45, 45)
+		CategoryButton.TextSize = 25.000
+		CategoryButton.TextWrapped = true
+
+		local UICorner = Instance.new("UICorner")
+		UICorner.CornerRadius = UDim.new(0.100000001, 0)
+		UICorner.Parent = CategoryButton
+
+		table.insert(LibAssets.Tabs.TabWindows, Window)
+		table.insert(LibAssets.Tabs.TabButtons, CategoryButton)
+
+		CategoryButton.MouseButton1Click:Connect(function()
+			for i, v in pairs(Windows:GetChildren()) do
+				v.Visible = false
+			end
+			for i, v in pairs(Categories:GetChildren()) do
+				if v == CategoryLayout then continue end
+				Tween(v, 1, {BackgroundColor3 = Color3.fromRGB(40, 48, 48)}):Play()
+			end
+			Tween(CategoryButton, 1, {BackgroundColor3 = Color3.fromRGB(80, 95, 95)}):Play()
+			Window.Visible = true
+		end)
+
+		if Info == nil then return end
+		CategoryButton.MouseMoved:Connect(function()
+			ToolTip.Text = Info
+			ToolTip.Visible = true
+		end)
+		CategoryButton.MouseLeave:Connect(function()
+			ToolTip.Visible = false
+		end)
+
+		function OmenLib.Button(ButtonName, ButtonText, Info, CallBack)
+			local Button = Instance.new("TextButton")
+			Button.Name = ButtonName
+			Button.Parent = Buttons
+			Button.Text = ButtonText
+			Button.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			Button.Size = UDim2.new(1, -25, 0.143000007, 0)
+			Button.Font = Enum.Font.Highway
+			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
+			Button.TextSize = 25.000
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner.Parent = Button
+
+			Button.MouseButton1Click:Connect(CallBack)
+
+            if Info == nil then return Button end
+            Button.MouseMoved:Connect(function()
+                ToolTip.Text = Info
+                ToolTip.Visible = true
+            end)
+            Button.MouseLeave:Connect(function()
+                ToolTip.Visible = false
+            end)
+
+			return Button
+		end
+
+		function OmenLib.Toggle(ToggleName, ToggleText, Info, CallBack)
+			local Toggle = Instance.new("Frame")
+			Toggle.Name = ToggleName
+			Toggle.Parent = Buttons
+			Toggle.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			Toggle.Size = UDim2.new(1, -25, 0.143000007, 0)
+
+			local TextButton = Instance.new("TextButton")
+			TextButton.Parent = Toggle
+			TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
+			TextButton.BackgroundColor3 = Color3.fromRGB(60, 72, 72)
+			TextButton.Position = UDim2.new(0.0490281284, 0, 0.500000119, 0)
+			TextButton.Size = UDim2.new(0.098056227, -15, 1, -12)
+			TextButton.Font = Enum.Font.Highway
+			TextButton.Text = ""
+			TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+			TextButton.TextSize = 14.000
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0.25, 0)
+			UICorner.Parent = TextButton
+
+			local UICorner_2 = Instance.new("UICorner")
+			UICorner_2.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner_2.Parent = Toggle
+
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.Parent = Toggle
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.Position = UDim2.new(0.0842026398, 0, 0, 0)
+			TextLabel.Size = UDim2.new(0.8289814, 0, 1, 0)
+			TextLabel.Font = Enum.Font.Highway
+			TextLabel.Text = ToggleText
+			TextLabel.TextColor3 = Color3.fromRGB(131, 45, 45)
+			TextLabel.TextSize = 25.000
+
+			local bool = false
+
+			TextButton.MouseButton1Click:Connect(function()
+				bool = not bool
+
+				if bool then
+					Tween(TextButton, 0.25, {BackgroundColor3 = Color3.fromRGB(131, 45, 45)}):Play() 
+				elseif not bool then
+					Tween(TextButton, 0.25, {BackgroundColor3 = Color3.fromRGB(60, 72, 72)}):Play()
+				end
+				CallBack(bool)
+			end)
+
+            if Info == nil then return Toggle end
+            Toggle.MouseMoved:Connect(function()
+                ToolTip.Text = Info
+                ToolTip.Visible = true
+            end)
+            Toggle.MouseLeave:Connect(function()
+                ToolTip.Visible = false
+            end)
+
+			return Toggle
+		end
+
+		function OmenLib.KeyBinder(KeyBinderName, Key, Info, CallBack)
+			local Keybinder = Instance.new("TextButton")
+			Keybinder.Name = KeyBinderName
+			Keybinder.Parent = Buttons
+			Keybinder.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			Keybinder.Size = UDim2.new(1, -25, 0.143000007, 0)
+			Keybinder.AutoButtonColor = false
+			Keybinder.Font = Enum.Font.Highway
+			Keybinder.Text = Key.Name
+			Keybinder.TextColor3 = Color3.fromRGB(131, 45, 45)
+			Keybinder.TextSize = 25.000
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner.Parent = Keybinder
+
+            local bind = Key
+
+			local changeBind = false
+
+			Keybinder.MouseButton1Click:Connect(function()
+				changeBind = true
+				Keybinder.Text = ". . ."
+			end)
+
+			UIS.InputBegan:Connect(function(input, processsed)
+				if processsed then return end
+
+				if input.KeyCode == bind and not changeBind then
+					CallBack(bind)
+				end
+
+				if changeBind then
+					if input.KeyCode == Enum.KeyCode.Backspace then
+						Keybinder.Text = "Nil bind"
+						bind = nil
+					else
+						Keybinder.Text = input.KeyCode.Name
+						bind = input.KeyCode
+					end
+					changeBind = false
+				end
+			end)
+
+            if Info == nil then return Keybinder end
+            Keybinder.MouseMoved:Connect(function()
+                ToolTip.Text = Info
+                ToolTip.Visible = true
+            end)
+            Keybinder.MouseLeave:Connect(function()
+                ToolTip.Visible = false
+            end)
+
+			return Keybinder
+		end
+
+		function OmenLib.Slider(SliderName, ValueName, Value, MaxValue, Info, Callback)
+			local Slider = Instance.new("Frame")
+			Slider.Name = SliderName
+			Slider.Parent = Buttons
+			Slider.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			Slider.Position = UDim2.new(0.0220701825, 0, 0.467746526, 0)
+			Slider.Size = UDim2.new(1, -25, 0.143000007, 0)
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner.Parent = Slider
+
+			local Slider_2 = Instance.new("Frame")
+			Slider_2.Name = "Slider"
+			Slider_2.Parent = Slider
+			Slider_2.AnchorPoint = Vector2.new(0.5, 0.5)
+			Slider_2.BackgroundColor3 = Color3.fromRGB(28, 33, 33)
+			Slider_2.BorderSizePixel = 0
+			Slider_2.ClipsDescendants = true
+			Slider_2.Position = UDim2.new(0.5, 0, 0.75, 0)
+			Slider_2.Size = UDim2.new(1, -50, 0.100000001, 0)
+
+			local Bar = Instance.new("Frame")
+			Bar.Name = "Bar"
+			Bar.Parent = Slider_2
+			Bar.AnchorPoint = Vector2.new(1, 0.5)
+			Bar.BackgroundColor3 = Color3.fromRGB(95, 111, 111)
+			Bar.BorderColor3 = Color3.fromRGB(78, 93, 93)
+			Bar.BorderSizePixel = 0
+			Bar.Position = UDim2.new(0, 0, 0.5, 0)
+			Bar.Size = UDim2.new(1, 0, 1, 0)
+
+			local Interact = Instance.new("TextButton")
+			Interact.Name = "Interact"
+			Interact.Parent = Slider
+			Interact.AnchorPoint = Vector2.new(0.5, 0.5)
+			Interact.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Interact.BackgroundTransparency = 1.000
+			Interact.Position = UDim2.new(0.5, 0, 0.770920217, 0)
+			Interact.Size = UDim2.new(1, -50, 0.958160162, -25)
+			Interact.Font = Enum.Font.SourceSans
+			Interact.Text = ""
+			Interact.TextColor3 = Color3.fromRGB(0, 0, 0)
+			Interact.TextSize = 14.000
+
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.Parent = Slider
+			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.Position = UDim2.new(0.27212891, 0, 0.449833363, 0)
+			TextLabel.Size = UDim2.new(0.726815701, -150, 0.5, 0)
+			TextLabel.Font = Enum.Font.Highway
+			TextLabel.Text = ValueName
+			TextLabel.TextColor3 = Color3.fromRGB(131, 45, 45)
+			TextLabel.TextSize = 25.000
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+			local TextLabel_2 = Instance.new("TextLabel")
+			TextLabel_2.Parent = Slider
+			TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
+			TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel_2.BackgroundTransparency = 1.000
+			TextLabel_2.Position = UDim2.new(0.726055384, 0, 0.449833363, 0)
+			TextLabel_2.Size = UDim2.new(0.726815701, -150, 0.5, 0)
+			TextLabel_2.Font = Enum.Font.Highway
+			TextLabel_2.Text = Value
+			TextLabel_2.TextColor3 = Color3.fromRGB(131, 45, 45)
+			TextLabel_2.TextSize = 25.000
+			TextLabel_2.TextWrapped = true
+			TextLabel_2.TextXAlignment = Enum.TextXAlignment.Right
+
+			local frame = Slider_2
+			local button = Interact
+			local bar = Bar
+			local text = TextLabel_2
+			local db = false
+			local percentage = 0
+			local Max = MaxValue
+			local step = 1/Max
+
+			local function snap(num,factor)
+				if factor == 0 then
+					return num
+				else
+					return math.floor(num/factor+0.5)*factor
+				end
+			end
+
+			UIS.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					db = false
+				end
+			end)
+
+			button.MouseButton1Down:Connect(function()
+				db = true
+			end)
+
+			game:GetService("RunService").RenderStepped:Connect(function()
+				if db then
+					local mousepos = UIS:GetMouseLocation().X
+					local buttonpos = button.Position
+					local framesize = frame.AbsoluteSize.X
+					local framepos = frame.AbsolutePosition.X
+					local pos = snap((mousepos-framepos)/framesize,step)
+					percentage = math.clamp(pos,0,1)
+					bar.Position = UDim2.new(percentage,0,buttonpos.Y.Scale,buttonpos.Y.Offset)
+
+					local number = math.floor(percentage * Max)
+					text.Text = number
+
+                    Callback(number)
+				end
+			end)
+
+            if Info == nil then return Slider end
+            Slider.MouseMoved:Connect(function()
+                ToolTip.Text = Info
+                ToolTip.Visible = true
+            end)
+            Slider.MouseLeave:Connect(function()
+                ToolTip.Visible = false
+            end)
+
+            return Slider
+		end
+
+		function OmenLib.TextInput(InputName, PlaceHolder, Info, CallBack)
+			local TextInput = Instance.new("Frame")
+			TextInput.Name = InputName
+			TextInput.Parent = Buttons
+			TextInput.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			TextInput.BackgroundTransparency = 1.000
+			TextInput.Position = UDim2.new(0.0220701825, 0, 0.769999921, 0)
+			TextInput.Size = UDim2.new(1, -25, 0.227183104, 0)
+
+			local TextBox = Instance.new("TextBox")
+			TextBox.Parent = TextInput
+			TextBox.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			TextBox.Size = UDim2.new(1, 0, 0.689999998, -5)
+			TextBox.Font = Enum.Font.Highway
+			TextBox.Text = ""
+			TextBox.PlaceholderText = PlaceHolder
+			TextBox.TextColor3 = Color3.fromRGB(131, 45, 45)
+			TextBox.TextSize = 25.000
+
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner.Parent = TextBox
+
+			local Button = Instance.new("TextButton")
+			Button.Name = "Button"
+			Button.Parent = TextInput
+			Button.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
+			Button.Position = UDim2.new(0.75, 0, 0.687752962, 0)
+			Button.Size = UDim2.new(0.25, 0, 0.312247396, 0)
+			Button.Font = Enum.Font.Highway
+			Button.Text = "Input"
+			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
+			Button.TextSize = 25.000
+
+			local UICorner_2 = Instance.new("UICorner")
+			UICorner_2.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner_2.Parent = Button
+
+			Button.MouseButton1Click:Connect(function()
+				CallBack(TextBox.Text)
+			end)
+
+            if Info == nil then return TextInput end
+            TextInput.MouseMoved:Connect(function()
+                ToolTip.Text = Info
+                ToolTip.Visible = true
+            end)
+            TextInput.MouseLeave:Connect(function()
+                ToolTip.Visible = false
+            end)
+
+			return TextInput
+		end
+	end
+	game:GetService("RunService").RenderStepped:Connect(function()
+		ToolTip.Position = UDim2.new(0, mouse.X + 25, 0, mouse.Y)
+	end)
+end
+
+LibAssets.Tabs.TabWindows[1].Visible = true; LibAssets.Tabs.TabButtons[1].BackgroundColor3 = Color3.fromRGB(80, 95, 95)
+
+print("Omen library V0.0.1")
+
+return OmenLib
