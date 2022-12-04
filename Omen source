@@ -181,7 +181,7 @@ function OmenLib.Create(Title)
 		Body.TextSize = 25.000
 		Body.TextWrapped = true
 
-		Tween(Notification, 0.5, {Position = UDim2.new(0, 0, 0, 0)})
+		Tween(Notification, 0.5, {Position = UDim2.new(0, 0, 0, 0)}):Play()
 		game:GetService("Debris"):AddItem(Container, Time)
 	end
 
@@ -617,6 +617,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.2")
+print("Omen library V0.0.21")
 
 return OmenLib
