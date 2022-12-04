@@ -539,7 +539,7 @@ function OmenLib.Create(Title)
 	end)
 end
 
-LibAssets.Tabs.TabWindows[1].Visible = true; LibAssets.Tabs.TabButtons[1].BackgroundColor3 = Color3.fromRGB(80, 95, 95)
+--LibAssets.Tabs.TabWindows[1].Visible = true; LibAssets.Tabs.TabButtons[1].BackgroundColor3 = Color3.fromRGB(80, 95, 95)
 
 print("Omen library V0.0.1")
 
