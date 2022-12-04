@@ -111,7 +111,7 @@ function OmenLib.Create(Title)
 
 		-- Window
 		local Window = Instance.new("Frame")
-		Window.Name = Name
+		Window.Name = Name or "Unamed"
 		Window.Parent = Windows
 		Window.AnchorPoint = Vector2.new(0.5, 0.5)
 		Window.BackgroundColor3 = Color3.fromRGB(28, 33, 33)
