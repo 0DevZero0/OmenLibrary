@@ -213,7 +213,12 @@ function OmenLib.Create(Title)
 		ButtonScroller.Position = UDim2.new(0.5, 0, 0.537500024, 0)
 		ButtonScroller.Size = UDim2.new(1, 0, 0.925000012, -15)
 		ButtonScroller.CanvasSize = UDim2.new(0, 0, 0, 0)
+		ButtonScroller.SizeConstraint = Enum.SizeConstraint.RelativeXY
+		ButtonScroller.AutomaticSize = Enum.AutomaticSize.Y
+		ButtonScroller.ScrollingDirection = Enum.ScrollingDirection.Y
+		ButtonScroller.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
 		ButtonScroller.ScrollBarThickness = 1
+		ButtonScroller.ScrollBarImageTransparency = 1
 
 		local Buttons = Instance.new("Folder")
 		Buttons.Name = "Buttons"
@@ -293,6 +298,8 @@ function OmenLib.Create(Title)
 			Divider.Font = Enum.Font.Highway
 			Divider.TextColor3 = Color3.fromRGB(82, 100, 100)
 			Divider.TextSize = 25.000
+
+			return Divider
 		end
 
 		function OmenLib.Button(ButtonName, ButtonText, Info, CallBack)
@@ -630,6 +637,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.4")
+print("Omen library V0.0.5")
 
 return OmenLib
