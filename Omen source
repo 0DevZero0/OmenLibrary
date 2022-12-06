@@ -214,7 +214,7 @@ function OmenLib.Create(Title)
 		ButtonScroller.Size = UDim2.new(1, 0, 0.925000012, -15)
 		ButtonScroller.CanvasSize = UDim2.new(0, 0, 0, 0)
 		ButtonScroller.SizeConstraint = Enum.SizeConstraint.RelativeXY
-		ButtonScroller.AutomaticSize = Enum.AutomaticSize.Y
+		ButtonScroller.AutomaticCanvasSize = Enum.AutomaticSize.Y
 		ButtonScroller.ScrollingDirection = Enum.ScrollingDirection.Y
 		ButtonScroller.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
 		ButtonScroller.ScrollBarThickness = 1
@@ -637,6 +637,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5")
+print("Omen library V0.0.51")
 
 return OmenLib
