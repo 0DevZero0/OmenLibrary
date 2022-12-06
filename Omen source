@@ -282,6 +282,19 @@ function OmenLib.Create(Title)
 			ToolTip.Visible = false
 		end)
 
+		function OmenLib.Divider(Name, Text)
+			local Divider = Instance.new("TextLabel")
+			Divider.Name = Name
+			Divider.Parent = Buttons
+			Divider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Divider.BackgroundTransparency = 1.000
+			Divider.Text = Text
+			Divider.Size = UDim2.new(1, -25, 0.143000007, 0)
+			Divider.Font = Enum.Font.Highway
+			Divider.TextColor3 = Color3.fromRGB(82, 100, 100)
+			Divider.TextSize = 25.000
+		end
+
 		function OmenLib.Button(ButtonName, ButtonText, Info, CallBack)
 			local Button = Instance.new("TextButton")
 			Button.Name = ButtonName or "Button"
@@ -617,6 +630,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.33")
+print("Omen library V0.0.4")
 
 return OmenLib
