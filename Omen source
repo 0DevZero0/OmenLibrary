@@ -542,6 +542,7 @@ function OmenLib.Create(Title)
 			local percentage = Value/MaxValue
 			local Max = MaxValue
 			local step = 1/Max
+			local number = Value
 
 			local function snap(num,factor)
 				if factor == 0 then
@@ -551,14 +552,18 @@ function OmenLib.Create(Title)
 				end
 			end
 
-			UIS.InputEnded:Connect(function(input)
+			--[[UIS.InputEnded:Connect(function(input)
 				if input.UserInputType == Enum.UserInputType.MouseButton1 then
 					db = false
 				end
-			end)
+			end)]]
 
 			button.MouseButton1Down:Connect(function()
 				db = true
+			end)
+			button.MouseButton1Up:Connect(function()
+				db = false
+				Callback(number)
 			end)
 
 			game:GetService("RunService").RenderStepped:Connect(function()
@@ -571,10 +576,8 @@ function OmenLib.Create(Title)
 					percentage = math.clamp(pos,0,1)
 					bar.Position = UDim2.new(percentage,0,buttonpos.Y.Scale,framepos.Y.Offset)
 
-					local number = math.floor(percentage * Max)
+					number = math.floor(percentage * Max)
 					text.Text = number
-
-                    Callback(number)
 				end
 			end)
 
@@ -651,6 +654,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5 test4")
+print("Omen library V0.0.5 test5")
 
 return OmenLib
