@@ -578,7 +578,7 @@ function OmenLib.Create(Title)
 				end
 			end)
 
-			bar.Position = UDim2.new(Value / Max, 0,0,0)
+			bar.Position = UDim2.new(Value / Max, 0,0,3)
 
             if Info == nil then return Slider end
             Slider.MouseMoved:Connect(function()
@@ -651,6 +651,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5 test")
+print("Omen library V0.0.5 test2")
 
 return OmenLib
