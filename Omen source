@@ -118,8 +118,20 @@ function OmenLib.Create(Title)
 	UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 	UIListLayout.Padding = UDim.new(0, 10)
 
+	local Unlock = Instance.new("TextButton")
+	Unlock.Name = "Unlock"
+	Unlock.Parent = game.StarterGui.OmenLibrary
+	Unlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Unlock.BackgroundTransparency = 1.000
+	Unlock.Modal = true
+	Unlock.Font = Enum.Font.SourceSans
+	Unlock.Text = ""
+	Unlock.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Unlock.TextSize = 14.000
+
 	function OmenLib.ActiveToggle()
 		Main.Visible = not Main.Visible
+		Unlock.Visible = not Unlock.Visible
 	end
 
 	function OmenLib.Notify(TitleText, BodyText, Time)
@@ -312,7 +324,6 @@ function OmenLib.Create(Title)
 			Button.Font = Enum.Font.Highway
 			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Button.TextSize = 25.000
-			Button.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.100000001, 0)
@@ -349,7 +360,6 @@ function OmenLib.Create(Title)
 			TextButton.Text = ""
 			TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 			TextButton.TextSize = 14.000
-			TextButton.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.25, 0)
@@ -406,7 +416,6 @@ function OmenLib.Create(Title)
 			Keybinder.Text = Key.Name
 			Keybinder.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Keybinder.TextSize = 25.000
-			Keybinder.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.100000001, 0)
@@ -496,7 +505,6 @@ function OmenLib.Create(Title)
 			Interact.Text = ""
 			Interact.TextColor3 = Color3.fromRGB(0, 0, 0)
 			Interact.TextSize = 14.000
-			Interact.Modal = true
 
 			local TextLabel = Instance.new("TextLabel")
 			TextLabel.Parent = Slider
@@ -615,7 +623,6 @@ function OmenLib.Create(Title)
 			Button.Text = "Input"
 			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Button.TextSize = 25.000
-			Button.Modal = true
 
 			local UICorner_2 = Instance.new("UICorner")
 			UICorner_2.CornerRadius = UDim.new(0.100000001, 0)
@@ -642,6 +649,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.52")
+print("Omen library V0.0.5")
 
 return OmenLib
