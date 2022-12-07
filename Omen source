@@ -120,7 +120,7 @@ function OmenLib.Create(Title)
 
 	local Unlock = Instance.new("TextButton")
 	Unlock.Name = "Unlock"
-	Unlock.Parent = game.StarterGui.OmenLibrary
+	Unlock.Parent = OmenLibrary
 	Unlock.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Unlock.BackgroundTransparency = 1.000
 	Unlock.Modal = true
@@ -649,6 +649,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5")
+print("Omen library V0.0.51")
 
 return OmenLib
