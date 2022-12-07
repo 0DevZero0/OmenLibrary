@@ -578,13 +578,6 @@ function OmenLib.Create(Title)
 				end
 			end)
 
-			local buttonpos = button.Position
-			local framesize = frame.AbsoluteSize.X
-			local framepos = frame.AbsolutePosition.X
-			local SetPos = snap((Value - framepos)/framesize,step)
-			percentage = math.clamp(SetPos,0,1)
-			bar.Position = UDim2.new(percentage,0,buttonpos.Y.Scale,buttonpos.Y.Offset)
-
             if Info == nil then return Slider end
             Slider.MouseMoved:Connect(function()
                 ToolTip.Text = Info
@@ -656,6 +649,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5 test")
+print("Omen library V0.0.5")
 
 return OmenLib
