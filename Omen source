@@ -312,6 +312,7 @@ function OmenLib.Create(Title)
 			Button.Font = Enum.Font.Highway
 			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Button.TextSize = 25.000
+			Button.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.100000001, 0)
@@ -348,6 +349,7 @@ function OmenLib.Create(Title)
 			TextButton.Text = ""
 			TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 			TextButton.TextSize = 14.000
+			TextButton.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.25, 0)
@@ -404,6 +406,7 @@ function OmenLib.Create(Title)
 			Keybinder.Text = Key.Name
 			Keybinder.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Keybinder.TextSize = 25.000
+			Keybinder.Modal = true
 
 			local UICorner = Instance.new("UICorner")
 			UICorner.CornerRadius = UDim.new(0.100000001, 0)
@@ -493,6 +496,7 @@ function OmenLib.Create(Title)
 			Interact.Text = ""
 			Interact.TextColor3 = Color3.fromRGB(0, 0, 0)
 			Interact.TextSize = 14.000
+			Interact.Modal = true
 
 			local TextLabel = Instance.new("TextLabel")
 			TextLabel.Parent = Slider
@@ -611,6 +615,7 @@ function OmenLib.Create(Title)
 			Button.Text = "Input"
 			Button.TextColor3 = Color3.fromRGB(131, 45, 45)
 			Button.TextSize = 25.000
+			Button.Modal = true
 
 			local UICorner_2 = Instance.new("UICorner")
 			UICorner_2.CornerRadius = UDim.new(0.100000001, 0)
@@ -637,6 +642,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.51")
+print("Omen library V0.0.52")
 
 return OmenLib
