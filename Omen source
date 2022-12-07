@@ -466,11 +466,11 @@ function OmenLib.Create(Title)
 			Slider.Name = SliderName or "Slider"
 			Slider.Parent = Buttons
 			Slider.BackgroundColor3 = Color3.fromRGB(51, 61, 61)
-			Slider.Position = UDim2.new(0.0220701825, 0, 0.467746526, 0)
+			Slider.Position = UDim2.new(0.0, 0, 0.5, 0)
 			Slider.Size = UDim2.new(1, -25, 0.143000007, 0)
 
 			local UICorner = Instance.new("UICorner")
-			UICorner.CornerRadius = UDim.new(0.100000001, 0)
+			UICorner.CornerRadius = UDim.new(0.1, 0)
 			UICorner.Parent = Slider
 
 			local Slider_2 = Instance.new("Frame")
@@ -481,7 +481,7 @@ function OmenLib.Create(Title)
 			Slider_2.BorderSizePixel = 0
 			Slider_2.ClipsDescendants = true
 			Slider_2.Position = UDim2.new(0.5, 0, 0.75, 0)
-			Slider_2.Size = UDim2.new(1, -50, 0.100000001, 0)
+			Slider_2.Size = UDim2.new(1, -50, 0.1, 0)
 
 			local Bar = Instance.new("Frame")
 			Bar.Name = "Bar"
@@ -539,7 +539,7 @@ function OmenLib.Create(Title)
 			local bar = Bar
 			local text = TextLabel_2
 			local db = false
-			local percentage = 0
+			local percentage = Value/MaxValue
 			local Max = MaxValue
 			local step = 1/Max
 
@@ -577,6 +577,13 @@ function OmenLib.Create(Title)
                     Callback(number)
 				end
 			end)
+
+			local buttonpos = button.Position
+			local framesize = frame.AbsoluteSize.X
+			local framepos = frame.AbsolutePosition.X
+			local SetPos = snap((Value - framepos)/framesize,step)
+			percentage = math.clamp(SetPos,0,1)
+			bar.Position = UDim2.new(percentage,0,buttonpos.Y.Scale,buttonpos.Y.Offset)
 
             if Info == nil then return Slider end
             Slider.MouseMoved:Connect(function()
@@ -649,6 +656,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.51")
+print("Omen library V0.0.5 test")
 
 return OmenLib
