@@ -574,7 +574,7 @@ function OmenLib.Create(Title)
 					local framepos = frame.AbsolutePosition.X
 					local pos = snap((mousepos-framepos)/framesize,step)
 					percentage = math.clamp(pos,0,1)
-					bar.Position = UDim2.new(percentage,0,buttonpos.Y.Scale,frame.position.Y.Offset)
+					bar.Position = UDim2.new(percentage,0,frame.position.Y.Scale,frame.position.Y.Offset)
 
 					number = math.floor(percentage * Max)
 					text.Text = number
@@ -654,6 +654,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5 MegaPain")
+print("Omen library V0.0.6")
 
 return OmenLib
