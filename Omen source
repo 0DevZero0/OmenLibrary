@@ -31,8 +31,7 @@ function OmenLib.Create(Title)
 	Main.BorderSizePixel = 0
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0.5, 0, 0.5, 0)
-	Main.Modal = true
-
+	
 	local SideBar = Instance.new("Frame")
 	SideBar.Name = "SideBar"
 	SideBar.Parent = Main
@@ -638,6 +637,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.5")
+print("Omen library V0.0.51")
 
 return OmenLib
