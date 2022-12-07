@@ -561,9 +561,11 @@ function OmenLib.Create(Title)
 			button.MouseButton1Down:Connect(function()
 				db = true
 			end)
-			button.MouseButton1Up:Connect(function()
-				db = false
-				Callback(number)
+			UIS.InputEnded:Connect(function(input, gameProcessedEvent)
+				 if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					db = false
+					Callback(number)
+				 end
 			end)
 
 			game:GetService("RunService").RenderStepped:Connect(function()
@@ -574,7 +576,7 @@ function OmenLib.Create(Title)
 					local framepos = frame.AbsolutePosition.X
 					local pos = snap((mousepos-framepos)/framesize,step)
 					percentage = math.clamp(pos,0,1)
-					bar.Position = UDim2.new(percentage,0,frame.position.Y.Scale,frame.position.Y.Offset)
+					bar.Position = UDim2.new(percentage,0,0,3)
 
 					number = math.floor(percentage * Max)
 					text.Text = number
@@ -654,6 +656,6 @@ function OmenLib.Create(Title)
 	end)
 end
 
-print("Omen library V0.0.6")
+print("Omen library V0.0.6 test")
 
 return OmenLib
